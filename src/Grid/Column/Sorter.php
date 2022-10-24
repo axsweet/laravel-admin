@@ -66,7 +66,7 @@ class Sorter implements Renderable
     public function render()
     {
         $icon = 'fa-sort';
-        $type = 'desc';
+        $type = 'asc';
 
         if ($this->isSorted()) {
             $type = $this->sort['type'] == 'desc' ? 'asc' : 'desc';
