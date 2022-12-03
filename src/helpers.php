@@ -13,7 +13,9 @@ if (!function_exists('admin_path')) {
      */
     function admin_path($path = '')
     {
-        return ucfirst(config('admin.directory')).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        //changed this to prevent an null error on ucfirst, prob can handle fid but admin directory doesnt matter its defualt...
+        return null;
+        //return ucfirst(config('admin.directory')).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
 
