@@ -11,6 +11,7 @@ class QuickSearch extends AbstractTool
      * @var string
      */
     protected $view = 'admin::grid.quick-search';
+    public static $searchKey = '__search__';
 
     /**
      * @var string
@@ -38,12 +39,12 @@ class QuickSearch extends AbstractTool
     {
         $query = request()->query();
 
-        Arr::forget($query, HasQuickSearch::$searchKey);
+        Arr::forget($query, self::$searchKey);
 
         $vars = [
             'action'      => request()->url().'?'.http_build_query($query),
-            'key'         => HasQuickSearch::$searchKey,
-            'value'       => request(HasQuickSearch::$searchKey),
+            'key'         => self::$searchKey,
+            'value'       => request(self::$searchKey),
             'placeholder' => $this->placeholder,
         ];
 
