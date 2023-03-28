@@ -34,29 +34,20 @@
 
 <div class="wrapper">
 
-    @if ($isFull)
-    {!! Admin::style() !!}
-    <div id="app" style="padding: 10px">
+    @include('admin::partials.header')
+
+    @include('admin::partials.sidebar')
+
+    <div class="content-wrapper" id="pjax-container">
+        {!! Admin::style() !!}
+        <div id="app">
         @yield('content')
+        </div>
+        {!! Admin::script() !!}
+        {!! Admin::html() !!}
     </div>
-    {!! Admin::script() !!}
-    {!! Admin::html() !!}
-@else
-@include('admin::partials.header')
 
-@include('admin::partials.sidebar')
-
-<div class="content-wrapper" id="pjax-container">
-    {!! Admin::style() !!}
-    <div id="app">
-        @yield('content')
-    </div>
-    {!! Admin::script() !!}
-    {!! Admin::html() !!}
-</div>
-
-@include('admin::partials.footer')
-@endif
+    @include('admin::partials.footer')
 
 </div>
 
