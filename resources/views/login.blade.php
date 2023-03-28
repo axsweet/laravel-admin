@@ -37,7 +37,6 @@
     <p class="login-box-msg">{{ trans('admin.login') }}</p>
 
     <form action="{{ admin_url('auth/login') }}" method="post">
-      <input type="hidden" name="returnUrl" value="{{ $returnUrl }}">
       <div class="form-group has-feedback {!! !$errors->has('username') ?: 'has-error' !!}">
 
         @if($errors->has('username'))
@@ -86,7 +85,7 @@
 <!-- /.login-box -->
 
 <!-- jQuery 2.1.4 -->
-<script src="{{ admin_asset("vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js")}}"></script>
+<script src="{{ admin_asset("vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.2.4.min.js")}}"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="{{ admin_asset("vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js")}}"></script>
 <!-- iCheck -->

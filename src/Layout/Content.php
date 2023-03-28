@@ -39,12 +39,7 @@ class Content implements Renderable
      * @var array
      */
     protected $view;
-    /**
-     * Is Full Page
-     *
-     * @var [type]
-     */
-    protected $isFullPage = false;
+
     /**
      * Content constructor.
      *
@@ -286,17 +281,7 @@ class Content implements Renderable
 
         return $this;
     }
-    /**
-     * Display as full page
-     *
-     * @param boolean $fullPage
-     * @return $this
-     */
-    public function withFull($fullPage = true)
-    {
-        $this->isFullPage = $fullPage;
-        return $this;
-    }
+
     /**
      * @return array
      */
@@ -323,8 +308,8 @@ class Content implements Renderable
             '_content_'   => $this->build(),
             '_view_'      => $this->view,
             '_user_'      => $this->getUserData(),
-            'isFull'      => $this->isFullPage
         ];
+
         return view('admin::content', $items)->render();
     }
 }
