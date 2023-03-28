@@ -286,12 +286,7 @@ class Content implements Renderable
 
         return $this;
     }
-    /**
-     * Display as full page
-     *
-     * @param boolean $fullPage
-     * @return $this
-     */
+
     public function withFull($fullPage = true)
     {
         $this->isFullPage = $fullPage;
@@ -310,9 +305,10 @@ class Content implements Renderable
     }
 
     /**
-     * Render this content.
+     * Render Page
      *
-     * @return string
+     * @param boolean $isFullPage
+     * @return void
      */
     public function render()
     {
