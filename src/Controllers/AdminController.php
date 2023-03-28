@@ -15,12 +15,6 @@ class AdminController extends Controller
      * @var string
      */
     protected $title = 'Title';
-    /**
-     * 是否全页面显示
-     *
-     * @var boolean
-     */
-    protected $isFullPage = false;
 
     /**
      * Set description for following 4 action pages.
@@ -54,7 +48,6 @@ class AdminController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->withFull($this->isFullPage)
             ->title($this->title())
             ->description($this->description['index'] ?? trans('admin.list'))
             ->body($this->grid());
@@ -71,7 +64,6 @@ class AdminController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->withFull($this->isFullPage)
             ->title($this->title())
             ->description($this->description['show'] ?? trans('admin.show'))
             ->body($this->detail($id));
@@ -88,7 +80,6 @@ class AdminController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->withFull($this->isFullPage)
             ->title($this->title())
             ->description($this->description['edit'] ?? trans('admin.edit'))
             ->body($this->form()->edit($id));
@@ -104,7 +95,6 @@ class AdminController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->withFull($this->isFullPage)
             ->title($this->title())
             ->description($this->description['create'] ?? trans('admin.create'))
             ->body($this->form());
