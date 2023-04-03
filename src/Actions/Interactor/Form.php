@@ -10,6 +10,8 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Symfony\Component\DomCrawler\Crawler;
+use Illuminate\Support\Facades\Auth;
+
 
 class Form extends Interactor
 {

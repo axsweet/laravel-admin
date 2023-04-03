@@ -160,6 +160,9 @@ trait CanCascadeFields
      */
     protected function getValueByJs()
     {
+        if(is_null(old($this->column(), $this->value()))){
+            return $this->column();
+        }
         return addslashes(old($this->column(), $this->value()));
     }
 
