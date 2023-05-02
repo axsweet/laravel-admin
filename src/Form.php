@@ -323,6 +323,7 @@ class Form implements Renderable
     public function store()
     {
         $data = \request()->all();
+       // dumpToFile('test',$data,'','a');
 
         // Handle validation errors.
         if ($validationMessages = $this->validationMessages($data)) {
