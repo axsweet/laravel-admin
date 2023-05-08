@@ -124,7 +124,12 @@ class MultipleSelect extends Select
     public function prepare($value)
     {
         $value = (array) $value;
-
-        return array_filter($value, 'strlen');
+        $return = [];
+        foreach ($value as $key => $v){
+            if(!is_null($v)){
+                $return[] = $v;
+            }
+        }
+        return array_filter($return, 'strlen');
     }
 }
