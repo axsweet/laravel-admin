@@ -587,11 +587,25 @@ class Model
                 'arguments' => [$this->model->getTable().'.*'],
             ]);
 
-            $this->queries->push([
-                'method'    => 'join',
-                'arguments' => $this->joinParameters($relation),
-            ]);
-
+            $jr = $this->joinParameters($relation);
+            if (is_array($jr[1])) {
+                if (count($jr[1]) == 2) {
+                    $this->queries->push([
+                        'method' => 'join',
+                        'arguments' => [$jr[0], $jr[1][0], $jr[2], $jr[3][0]], [$jr[0], $jr[1][1], $jr[2], $jr[3][1]]
+                    ]);
+                } elseif (count($jr[1]) == 3) {
+                    $this->queries->push([
+                        'method' => 'join',
+                        'arguments' => [$jr[0], $jr[1][0], $jr[2], $jr[3][0]], [$jr[0], $jr[1][1], $jr[2], $jr[3][1]], [$jr[0], $jr[1][2], $jr[2], $jr[3][2]]
+                    ]);
+                }
+            } else {
+                $this->queries->push([
+                    'method' => 'join',
+                    'arguments' => $jr,
+                ]);
+            }
             $this->resetOrderBy();
 
             $this->queries->push([
