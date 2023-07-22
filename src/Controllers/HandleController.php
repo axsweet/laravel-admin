@@ -16,11 +16,12 @@ use Illuminate\Support\Collection;
 
 class HandleController extends Controller
 {
-    /**
-     * @param Request $request
-     *
-     * @return $this|mixed
-     */
+
+    public function __construct()
+    {
+        error_reporting(0);
+    }
+
     public function handleForm(Request $request)
     {
         $form = $this->resolveForm($request);
