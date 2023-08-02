@@ -8,20 +8,8 @@ use Illuminate\Support\Collection;
 
 trait CanHidesColumns
 {
-    /**
-     * Default columns be hidden.
-     *
-     * @var array
-     */
     public $hiddenColumns = [];
 
-    /**
-     * Remove column selector on grid.
-     *
-     * @param bool $disable
-     *
-     * @return Grid|mixed
-     */
     public function disableColumnSelector(bool $disable = true)
     {
         return $this->option('show_column_selector', !$disable);
@@ -52,6 +40,12 @@ trait CanHidesColumns
      */
     public function hideColumns($columns)
     {
+        if(isset($_GET['ignoreHidden'])){
+            if($_GET['ignoreHidden'] == 'true'){
+                return $this;
+            }
+        }
+
         if (func_num_args()) {
             $columns = (array) $columns;
         } else {
