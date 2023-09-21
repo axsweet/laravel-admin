@@ -82,7 +82,6 @@ abstract class BatchAction implements Renderable
      */
     public function getElementClass($dotPrefix = true)
     {
-        if($this->elementClass)
         return sprintf(
             '%s%s-%s',
             $dotPrefix ? '.' : '',
