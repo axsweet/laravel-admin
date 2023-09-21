@@ -75,7 +75,11 @@ class HandleController extends Controller
         $arguments = [];
 
         if ($action instanceof GridAction) {
-            $model = $action->retrieveModel($request);
+            try {
+                $model = $action->retrieveModel($request);
+            }catch(Exception $e){
+                //
+            }
             $arguments[] = $model;
         }
 
