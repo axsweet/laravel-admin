@@ -18,8 +18,7 @@ class Image extends File
      *
      * @var string
      */
-    protected $rules = 'image';
-
+    protected $rules = 'image|mimes:jpg,png,jpeg,gif,svg,webp,tif';
     /**
      * @param array|UploadedFile $image
      *
