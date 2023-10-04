@@ -4,7 +4,6 @@ namespace Encore\Admin\Middleware;
 
 use Closure;
 use Encore\Admin\Facades\Admin;
-
 class Authenticate
 {
     /**
@@ -19,7 +18,7 @@ class Authenticate
     {
         \config(['auth.defaults.guard' => 'admin']);
 
-        $redirectTo = admin_base_path(config('admin.auth.redirect_to', 'auth/login'));
+        $redirectTo = admin_base_path(config('admin.auth.redirect_to', 'auth/login')).'?returnUrl='.$request->url();
 
         if (Admin::guard()->guest() && !$this->shouldPassThrough($request)) {
             return redirect()->to($redirectTo);
