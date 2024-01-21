@@ -320,7 +320,7 @@ class Model
      */
     public function chunk($callback, $count = 100)
     {
-        if ($this->usePaginate) {
+        if ($this->usePaginate && $count < 1000) {
             return $this->buildData(false)->chunk($count)->each($callback);
         }
 
