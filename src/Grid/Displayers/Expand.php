@@ -50,6 +50,7 @@ class Expand extends AbstractDisplayer
         {
             return "_handle_renderable";
         }
+        return route('admin.handle-renderable', compact('renderable'));
 
     }
 }

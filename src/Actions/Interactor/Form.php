@@ -10,8 +10,6 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Symfony\Component\DomCrawler\Crawler;
-use Illuminate\Support\Facades\Auth;
-
 
 class Form extends Interactor
 {
@@ -528,9 +526,9 @@ class Form extends Interactor
         Object.assign(data, {$parameters});
         {$this->action->actionScript()}
         $('#'+modalId).modal('show');
-        $(':submit', '#'+modalId).button('reset');
+        $('.submit', '#'+modalId).button('reset');
         $('#'+modalId+' form').off('submit').on('submit', function (e) {
-            $(':submit', e.target).button('loading');
+            $('.submit', e.target).button('loading');
             e.preventDefault();
             var form = this;
             {$this->buildActionPromise()}
