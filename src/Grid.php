@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Jenssegers\Mongodb\Eloquent\Model as MongodbModel;
+use MongoDB\Laravel\Eloquent\Model as MongodbModel;
 
 class Grid
 {
