@@ -192,6 +192,9 @@ class Editable extends AbstractDisplayer
         } else {
             $.admin.toastr.error(response.message, '', {positionClass:"toast-top-center"});
         }
+        if (response.reload){
+            $.pjax.reload('#pjax-container');
+        }
     }
 }
 STR;
