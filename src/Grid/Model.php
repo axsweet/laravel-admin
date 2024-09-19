@@ -576,12 +576,15 @@ class Model
         list($relationName, $relationColumn) = explode('.', $column);
         // relationship should be camel case
         $relationName = Str::camel($relationName);
-
+//dd($relationName);
         if ($this->queries->contains(function ($query) use ($relationName) {
             return $query['method'] == 'with' && in_array($relationName, $query['arguments']);
         })) {
+            try{
             $relation = $this->model->$relationName();
-
+            }catch (\Exception $exception){
+                return;
+            }
             $this->queries->push([
                 'method'    => 'select',
                 'arguments' => [$this->model->getTable().'.*'],
