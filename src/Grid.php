@@ -603,7 +603,7 @@ class Grid
      *
      * @return Collection|null
      */
-    public function rows(Closure $callable = null)
+    public function rows(?Closure $callable = null)
     {
         if (is_null($callable)) {
             return $this->rows;
