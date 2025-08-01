@@ -173,7 +173,7 @@ class CsvExporter extends AbstractExporter
 
                 // Write title
                 if (empty($titles)) {
-                    fputcsv($handle, $titles = $this->getVisiableTitles());
+                    fputcsv($handle, $titles = $this->getVisibleTitles());
                 }
 
                 // Write rows
@@ -192,7 +192,7 @@ class CsvExporter extends AbstractExporter
     /**
      * @return array
      */
-    protected function getVisiableTitles()
+    protected function getVisibleTitles()
     {
         $titles = $this->grid->visibleColumns()
             ->mapWithKeys(function (Column $column) {
