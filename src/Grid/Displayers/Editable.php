@@ -72,6 +72,38 @@ class Editable extends AbstractDisplayer
      *
      * @param array|\Closure $options
      */
+    public function select2($options = [])
+    {
+        $this->type = 'select2';
+
+        $useClosure = false;
+
+        if ($options instanceof \Closure) {
+            $useClosure = true;
+            $options = $options->call($this, $this->row);
+        }
+
+        $source = [];
+
+        foreach ($options as $value => $text) {
+            $source[] = compact('value', 'text');
+        }
+
+        if ($useClosure) {
+            $this->addAttributes(['data-source' => json_encode($source)]);
+        } else {
+            $this->addOptions(compact('source'));
+        }
+
+        // Add select2 specific options
+        $this->addOptions([
+            'select2' => [
+                'width' => '200px',
+                'placeholder' => 'Select...',
+                'allowClear' => true
+            ]
+        ]);
+    }
     public function select($options = [])
     {
         $useClosure = false;
