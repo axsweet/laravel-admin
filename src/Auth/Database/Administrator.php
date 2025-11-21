@@ -48,25 +48,26 @@ class Administrator extends Model implements AuthenticatableContract
     public function getAvatarAttribute($avatar)
     {
         if ($avatar && url()->isValidUrl($avatar)) {
-            return $avatar;
+            // If it's already a full URL, replace APP_URL with current domain
+            $appUrl = config('app.url');
+            $currentUrl = request()->getSchemeAndHttpHost();
+            return str_replace($appUrl, $currentUrl, $avatar);
         }
 
         $disk = config('admin.upload.disk');
 
         if ($avatar && array_key_exists($disk, config('filesystems.disks'))) {
-            return Storage::disk(config('admin.upload.disk'))->url($avatar);
+            // Get the storage URL and replace APP_URL with current domain
+            $storageUrl = Storage::disk(config('admin.upload.disk'))->url($avatar);
+            $appUrl = config('app.url');
+            $currentUrl = request()->getSchemeAndHttpHost();
+            return str_replace($appUrl, $currentUrl, $storageUrl);
         }
 
         $default = config('admin.default_avatar') ?: '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg';
 
         return admin_asset($default);
     }
-
-    /**
-     * A user has and belongs to many roles.
-     *
-     * @return BelongsToMany
-     */
     public function roles(): BelongsToMany
     {
         $pivotTable = config('admin.database.role_users_table');

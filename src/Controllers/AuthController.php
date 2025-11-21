@@ -70,21 +70,15 @@ class AuthController extends Controller
             'password'          => 'required',
         ]);
     }
-
-    /**
-     * User logout.
-     *
-     * @return Redirect
-     */
     public function getLogout(Request $request)
     {
         $this->guard()->logout();
-
         $request->session()->invalidate();
+        $request->session()->flush();
+        $request->session()->regenerate();
 
-        return redirect(config('admin.route.prefix'));
+        return redirect('/auth/login'); // Changed from route('auth.login') to URL
     }
-
     /**
      * User setting page.
      *
