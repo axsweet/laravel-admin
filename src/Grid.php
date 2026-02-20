@@ -562,7 +562,7 @@ class Grid
 
         $this->addDefaultColumns();
 
-        Column::setOriginalGridModels($collection);
+        Column::setOriginalGridModels(collect($collection));
 
         $data = $collection->toArray();
 
