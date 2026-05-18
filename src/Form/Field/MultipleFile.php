@@ -79,7 +79,14 @@ class MultipleFile extends Field
 
         $attributes[$this->column] = $this->label;
 
-        list($rules, $input) = $this->hydrateFiles(Arr::get($input, $this->column, []));
+        $value = Arr::get($input, $this->column, []);
+        if ($value instanceof UploadedFile || $value instanceof \Illuminate\Http\UploadedFile) {
+            $value = [$value];
+        } elseif (!is_array($value)) {
+            $value = $value === null || $value === '' ? [] : [$value];
+        }
+
+        list($rules, $input) = $this->hydrateFiles($value);
 
         return \validator($input, $rules, $this->getValidationMessages(), $attributes);
     }
@@ -147,6 +154,12 @@ class MultipleFile extends Field
 
         if (is_string($files) && request()->has(static::FILE_SORT_FLAG)) {
             return $this->sortFiles($files);
+        }
+
+        if ($files instanceof UploadedFile || $files instanceof \Illuminate\Http\UploadedFile) {
+            $files = [$files];
+        } elseif (!is_array($files)) {
+            $files = $files === null || $files === '' ? [] : [$files];
         }
 
         $targets = array_map([$this, 'prepareForeach'], $files);

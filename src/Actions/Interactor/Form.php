@@ -383,9 +383,12 @@ class Form extends Interactor
         $crawler = new Crawler($content);
 
         $node = $crawler->filter($selector)->getNode(0);
+        if ($node === null) {
+            return $content;
+        }
         $node->setAttribute('modal', $this->getModalId());
 
-        return $crawler->children()->html();
+        return $node->ownerDocument->saveHTML($node);
     }
 
     /**
